@@ -1,3 +1,10 @@
+"""
+This script polls the Yahoo Finance API for stock data and writes it to a csv
+dump. The script is intended to be run in a docker container and requires a
+parameters.json file to be mounted to the container's workdir. The parameters
+file should contain a list of tickers to poll.
+"""
+
 import csv
 import json
 import os
@@ -6,18 +13,20 @@ from pathlib import Path
 
 import yfinance as yf
 
-API_CALL_LIMIT_PER_HOUR = 400
+# Constants
+API_CALL_LIMIT_PER_HOUR = 400 # Yahoo Finance API call limit per hour
 SECONDS_PER_HOUR = 3600
-WORKDIR_PATH = Path("/app/workdir")
+WORKDIR_PATH = Path("/app/workdir") # Path to the workdir in the container
 
 def info_to_csv(path, now, ticker_info):
     """
     Parses ticker data dict from yahoo finance API call and writes it to a csv
-    file.
+    file. If the file does not exist, it will be created. If the file does
+    exist, the data will be appended to the file.
 
     Args:
-        ticker_info (dict): Dictionary containing the data dump from the yf
-                API call
+        ticker_info (dict): A dictionary containing ticker data from the Yahoo
+            Finance API.
 
     Returns:
         None
