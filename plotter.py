@@ -1,3 +1,7 @@
+"""
+This script reads in a csv file containing stock data and plots the daily price
+trends and price changes for the stock.
+"""
 import csv
 import json
 from pathlib import Path
@@ -7,6 +11,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_daily(data, path):
+    """
+    Plots the daily price trends for the stock data.
+
+    Args:
+        data (dict): A dictionary containing the stock data.
+        path (Path): The path to save the plot.
+    
+    Returns:
+        None
+    """
 
     print(data["symbol"][0])
     timestamp = np.array(data["timestamp"]).astype(float)
@@ -44,6 +58,16 @@ def plot_daily(data, path):
     plt.close()
 
 def plot_price_change(data, path):
+    """
+    Plots the price changes for the stock data.
+
+    Args:
+        data (dict): A dictionary containing the stock data.
+        path (Path): The path to save the plot.
+
+    Returns:
+        None
+    """
 
     timestamp = np.array(data["timestamp"]).astype(float)
     price_open = np.array(data["open"]).astype(float)[-1]
