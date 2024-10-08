@@ -22,7 +22,6 @@ def plot_daily(data, path):
         None
     """
 
-    print(data["symbol"][0])
     timestamp = np.array(data["timestamp"]).astype(float)
     length = len(timestamp)
     newdict = {"Current Price": "currentPrice",
