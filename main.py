@@ -13,6 +13,8 @@ from pathlib import Path
 
 import yfinance as yf
 
+import plotter as pt
+
 # Constants
 API_CALL_LIMIT_PER_HOUR = 400 # Yahoo Finance API call limit per hour
 SECONDS_PER_HOUR = 3600
@@ -68,4 +70,8 @@ if __name__ == "__main__":
                 info_to_csv(WORKDIR_PATH, now, stonk.info)
                 time.sleep(sleep_time)
         else:
+            timenow = time.strftime("%y-%m-%d-%H:%M:%S",
+                                    time.gmtime(time.time())
+            )
+            print(f"pulse... {timenow}")
             time.sleep(sleep_time)
