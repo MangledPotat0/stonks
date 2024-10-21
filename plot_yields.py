@@ -4,6 +4,8 @@ from pathlib import Path
 from matplotlib import pyplot as plt
 import numpy as np
 
+import process_tools as pt
+
 if __name__ == "__main__":
     path = Path("/app/workdir/calc")
     i = 0
@@ -19,6 +21,7 @@ if __name__ == "__main__":
                 i = 0
             if i == 0:
                 plt.legend()
+                pt.date_on_xticks()
                 plt.savefig(path/f"yield_comparison_{j}.png")
                 plt.close()
                 plt.figure(figsize=(10,8))

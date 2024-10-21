@@ -13,8 +13,6 @@ from pathlib import Path
 
 import yfinance as yf
 
-import plotter as pt
-
 # Constants
 API_CALL_LIMIT_PER_HOUR = 400 # Yahoo Finance API call limit per hour
 SECONDS_PER_HOUR = 3600
